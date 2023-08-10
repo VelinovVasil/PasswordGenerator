@@ -15,23 +15,16 @@ public class Engine implements Runnable {
     @Override
     public void run() {
 
+        System.out.println("Welcome to password generator.\nIn order to generate a password, simply type Y in the console and the desired length of the password.\nOtherwise type in N.");
+
         String input = scanner.nextLine();
 
-        while(!input.equals("end")) {
+        while(!input.equals("N")) {
 
             String output = null;
 
             try {
-
-                if (input.split(" ")[0].equals("generatePassword")) {
-
                     output = this.controller.generatePassword(Integer.parseInt(input.split(" ")[1]));
-
-                } else {
-
-                    throw new IllegalArgumentException("Invalid command.");
-
-                }
 
             } catch (Exception e) {
 
@@ -40,6 +33,9 @@ public class Engine implements Runnable {
             }
 
             System.out.println(output);
+
+            System.out.println("Generate new password? [Y/N]");
+
             input = scanner.nextLine();
         }
 
